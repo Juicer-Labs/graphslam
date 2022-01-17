@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-matplotlib.use("pdf")
+matplotlib.use("Qt5Agg")
 import matplotlib.pyplot as plt
 import csv
 import os
@@ -43,5 +43,5 @@ def draw_data_graph(vertices, edge_id, edges, edge_covariance):
     plt.scatter(vertices[:, 0], vertices[:, 1])
     plt.xlabel("X")
     plt.ylabel("Y")
-    # plt.show()
-    plt.savefig(os.path.join(os.path.dirname(__file__), 'plot.pdf'))
+    plt.show()
+    # plt.savefig(os.path.join(os.path.dirname(__file__), 'plot.pdf'))
