@@ -13,3 +13,7 @@ def get_data(filename):
                 edges.append(item)
     
     return vertices, edges
+
+
+def draw_data_graph(vertices, edge_id, edges, edge_covariance):
+    pass
