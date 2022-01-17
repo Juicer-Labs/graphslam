@@ -1,3 +1,5 @@
+#!/usr/bin/env
+
 from util import *
 
 
