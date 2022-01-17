@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+import os
+import numpy as np
+# import matplotlib.pyplot as plt
+
 from util import *
 
-
 if __name__ == "__main__":
-    print("hello world")
+    vertices, edge_ids, edges, edges_covariance = get_data(os.path.join(os.path.dirname(__file__), '../FRH_P_toro.graph'))
+    # print(vertices)
 
-    vertices, edges = get_data('FRH_P_toro.graph')
-
-    print(vertices)
+    draw_data_graph(vertices, edge_ids, edges, edges_covariance)
