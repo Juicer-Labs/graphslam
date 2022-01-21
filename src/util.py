@@ -42,25 +42,21 @@ def get_data(filename):
 import pylab as pl
 from matplotlib import collections as mc
 def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
-    plt.scatter(vertices[:, 0], vertices[:, 1], s = 0.5)
+    # Plot edges
+    x1s = []; y1s = []; x2s = []; y2s = []
+    for id1, id2 in edge_ids:
+        x1, y1, _ = vertices[id1]
+        x2, y2, _ = vertices[id2]
+        x1s.append(x1)
+        y1s.append(y1)
+        x2s.append(x2)
+        y2s.append(y2)
+    plt.plot(x1s, y1s, x2s, y2s, marker='')
+
+    # NOTE(gonk): Draw points last so that they're on top
+    plt.scatter(vertices[:, 0], vertices[:, 1], s = 10, color='black', marker='o')
     plt.xlabel("X");plt.ylabel("Y")
     plt.axis('off')
 
-    # Plot edges
-    # for id1, id2 in edge_ids:
-        # x1, y1, _ = vertices[id1]
-        # x2, y2, _ = vertices[id2]
-        # plt.plot([x1], [y1], [x2], [y2], marker='o')
-
-    lines = []
-    for id1, id2 in edge_ids:
-        lines.append((vertices[id1][:2],vertices[id2][:2]))
-    lc = mc.LineCollection(lines, linewidths=2)
-    fig, ax = pl.subplots()
-    ax.add_collection(lc)
-    ax.autoscale()
-    ax.margins(0,1)
-
-    print('cum')
     plt.show()
 
