@@ -1,7 +1,8 @@
 import pygame
 
 class GraphPlotter():
-    def __init__(self, width=1000, height=1000, background=(60,60,60), centerAtMiddle=True):
+
+    def __init__(self, width=1000, height=1000, background=(60, 60, 60), centerAtMiddle=True):
         pygame.init()
         self.width, self.height = width, height
         self.background = background
@@ -11,14 +12,14 @@ class GraphPlotter():
 
         self.center = (0,self.height)
         if centerAtMiddle:
-            self.center = (self.width/2, self.height/2)
+            self.center = (self.width / 2, self.height / 2)
 
 
-    def plotXY(self, X, Y, color=(255,0,0), radius=3):
+    def plotXY(self, X, Y, color=(255, 0, 0), radius=3):
         # self.screen.fill(self.background)
 
-        for i in range(len(X)-1):
-            # Draw circle with (0,0) at center of screen
+        for i in range(len(X) - 1):
+            # Draw circle with (0, 0) at center of screen
             pygame.draw.circle(self.screen, color,
                (self.center[0] + int(X[i]), self.center[1] - int(Y[i])),
             radius)

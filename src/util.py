@@ -4,6 +4,8 @@ matplotlib.use("Qt5Agg")
 import matplotlib.pyplot as plt
 import csv
 import os
+import pylab as pl
+from matplotlib import collections as mc
 
 def get_data(filename):
     vertices = []
@@ -16,11 +18,10 @@ def get_data(filename):
         for item in reader:
             if item[0] == "VERTEX2":
                 _, _, x,y,yaw = item
-                vertices.append((float(x),float(y),float(yaw)))
+                vertices.append((float(x), float(y), float(yaw)))
 
             if item[0] == "EDGE2":
-                # TORO file edge format:
-                # EDGE2 IDout IDin dx dy dth I11 I12 I22 I33 I13 I23
+                # TORO file edge format: EDGE2 IDout IDin dx dy dth I11 I12 I22 I33 I13 I23
                 _, IDout, IDin, dx, dy, dth, I11, I12, I22, I33, I13, I23 = item
                 edge_ids.append((int(IDout), int(IDin)))
                 edges.append((float(dx), float(dy), float(dth)))
@@ -39,11 +40,11 @@ def get_data(filename):
 
     return vertices, edge_ids, edges, edges_covariance
 
-import pylab as pl
-from matplotlib import collections as mc
+
 def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
     # Plot edges
     x1s = []; y1s = []; x2s = []; y2s = []
+    
     for id1, id2 in edge_ids:
         x1, y1, _ = vertices[id1]
         x2, y2, _ = vertices[id2]
@@ -51,12 +52,12 @@ def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
         y1s.append(y1)
         x2s.append(x2)
         y2s.append(y2)
+
     plt.plot(x1s, y1s, x2s, y2s, marker='')
 
     # NOTE(gonk): Draw points last so that they're on top
     plt.scatter(vertices[:, 0], vertices[:, 1], s = 10, color='black', marker='o')
-    plt.xlabel("X");plt.ylabel("Y")
+    plt.xlabel("X"); plt.ylabel("Y")
     plt.axis('off')
-
     plt.show()
 
