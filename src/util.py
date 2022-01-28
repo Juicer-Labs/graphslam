@@ -44,7 +44,7 @@ def get_data(filename):
 def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
     # Plot edges
     x1s = []; y1s = []; x2s = []; y2s = []
-    
+
     for id1, id2 in edge_ids:
         x1, y1, _ = vertices[id1]
         x2, y2, _ = vertices[id2]
