@@ -42,6 +42,8 @@ def get_data(filename):
 
 
 def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
+    plt.scatter(vertices[:, 0], vertices[:, 1], s = 10, color='orange', marker='o', zorder=1)
+
     # Plot edges
     x1s = []; y1s = []; x2s = []; y2s = []
 
@@ -53,11 +55,8 @@ def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
         x2s.append(x2)
         y2s.append(y2)
 
-    plt.plot(x1s, y1s, x2s, y2s, marker='')
+    plt.plot(x1s, y1s, x2s, y2s, marker='', color='green', zorder=0)
 
-    # NOTE(gonk): Draw points last so that they're on top
-    plt.scatter(vertices[:, 0], vertices[:, 1], s = 10, color='black', marker='o')
-    plt.xlabel("X"); plt.ylabel("Y")
     plt.axis('off')
     plt.show()
 
