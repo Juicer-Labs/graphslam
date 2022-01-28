@@ -6,6 +6,14 @@ def calculate_covariance(matrix):
     return result
 
 
+def calculate_information(matrix):
+    pass
+
+
+def compute_jacobians(matrix):
+    A, B = None, None
+
+
 if __name__ == "__main__":
 
     matrix = [
@@ -14,4 +22,4 @@ if __name__ == "__main__":
         [1, 2, 3]
     ]
 
-    print(calculate_covariance(matrix))
+    cov_matrix = calculate_covariance(matrix)
