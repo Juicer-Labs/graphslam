@@ -16,11 +16,11 @@ def get_data(filename):
     with open(filename, 'r') as f:
         reader = csv.reader(f, delimiter=' ')
         for item in reader:
-            if item[0] == "VERTEX2":
+            if item[0] == "VERTEX2" or item[0] == "VERTEX_SE2":
                 _, _, x,y,yaw = item
                 vertices.append((float(x), float(y), float(yaw)))
 
-            if item[0] == "EDGE2":
+            if item[0] == "EDGE2" or item[0] == "EDGE_SE2":
                 # TORO file edge format: EDGE2 IDout IDin dx dy dth I11 I12 I22 I33 I13 I23
                 _, IDout, IDin, dx, dy, dth, I11, I12, I22, I33, I13, I23 = item
                 edge_ids.append((int(IDout), int(IDin)))
