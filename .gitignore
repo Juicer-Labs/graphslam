@@ -1,2 +1,2 @@
-src/*.pyc
-./slamenv
+*.pyc
+./src/__pycache__
