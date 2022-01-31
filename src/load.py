@@ -36,12 +36,12 @@ def get_data(filename):
     vertices = np.array(vertices)
     edge_ids = np.array(edge_ids)
     edges = np.array(edges)
-    edges_covariance = np.array(edges_covariance)
+    edges_covariance = np.array(edges_covariance, dtype=np.float32)
 
     return vertices, edge_ids, edges, edges_covariance
 
 
-def draw_data_graph(vertices, edge_ids, edges, edge_covariance):
+def draw_data_graph(vertices, edge_ids, edges):
     plt.scatter(vertices[:, 0], vertices[:, 1], s = 10, color='orange', marker='o', zorder=1)
 
     # Plot edges
