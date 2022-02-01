@@ -32,8 +32,17 @@ def draw_data_graph(vertices, edges):
     plt.show()
 
 
-if __name__ == "__main__":
-    vertices, edges = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
+def main():
+    graph = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
+    graph.plot()
 
-    vertices = np.array(vertices)
-    draw_data_graph(vertices, edges)
+
+if __name__ == "__main__":
+    # vertices, edges = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
+    # graph = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
+    # graph.plot()
+
+    # vertices = np.array(vertices)
+    # draw_data_graph(vertices, edges)
+
+    main()

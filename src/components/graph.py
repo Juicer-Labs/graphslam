@@ -14,6 +14,20 @@ class Graph:
     def calc_error_gradient_hessian(self):
         pass
 
-    def optimise():
+    def optimise(self):
         pass
+
+    def plot(self):
+
+        print(self.vertices)
+        
+        for edge in self.edges:
+            edge.plot(self.vertices)
+        
+        for vertex in self.vertices:
+            vertex.plot()
+        
+        plt.title("GraphSLAM")
+        plt.axis('off')
+        plt.show()
 
