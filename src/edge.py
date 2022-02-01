@@ -1,13 +1,16 @@
 import numpy as np
 
 class Edge:
-    def __init__(self, ids, estimate, infoMatrix, invertInfo = True):
+
+    def __init__(self, ids, estimate, info_matrix, invert_info=True):
         self.ids = ids # (id1, id2)
-        self.estimate = estimate # dx dy dth
+        self.estimate = estimate # dx, dy, dth
         # 3x3 info matrix
-        self.infoMatrix = np.array(infoMatrix, dtype=np.float32)
-        if invertInfo: # Inverto info in case a covar matrix was provided
-            self.infoMatrix = np.linalg.inv(self.infoMatrix)
+        self.info_matrix = np.array(infoMatrix, dtype=np.float32)
+
+        # Invert info in case a covariance matrix was provided
+        if invert_info:
+            self.info_matrix = np.linalg.inv(self.info_matrix)
 
     def calc_error(self):
         pass
