@@ -1,8 +1,9 @@
-from edge import Edge
+from components.edge import Edge
 
 
 def load_graph_file(file):
     """Loads g2o/toro file"""
+
     vertices = []
     edges = []
 
@@ -26,6 +27,6 @@ def load_graph_file(file):
                 edges.append(Edge(ids, estimate, covar))
                 continue
 
-    print(vertices)
+    # print(vertices)
 
     return vertices, edges
