@@ -14,6 +14,12 @@ class Edge(object):
         if invert_info:
             self.info_matrix = np.linalg.inv(self.info_matrix)
 
+    def __repr__(self):
+        return "Edge: {}, {}, {}".format(self.ids, self.estimate, self.info_matrix)
+
+    def __str__(self):
+        return "Edge: {}, {}, {}".format(self.ids, self.estimate, self.info_matrix)
+
     def calc_error(self):
         pass
 

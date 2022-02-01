@@ -13,6 +13,12 @@ class Graph(object):
         self.gradient = None
         self.hessian = None
 
+    def __repr__(self):
+        return "Graph: {}, {}, {}, {}, {}".format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
+
+    def __str__(self):
+        return "Graph: {}, {}, {}, {}, {}".format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
+
     def calc_error(self):
         pass
 
@@ -36,7 +42,7 @@ class Graph(object):
         if save:
             print("Saving graph...")
             plt.savefig("graph.pdf")
-            print("Graph saved.
+            print("Graph saved.")
         else:
             print("Showing graph...")
             plt.show()
