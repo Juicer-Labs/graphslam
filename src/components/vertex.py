@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -14,7 +13,11 @@ class Vertex(object):
     def __str__(self):
         return "Vertex: {}, {}".format(self.id, self.pose)
 
+    # TODO (tom): fix this.
     def plot(self):
         x, y, _ = self.pose
-        # plt.plot(x, y, s=10, marker='o', color='orange', zorder=1)
         plt.plot(x, y, marker='o', color='orange', zorder=1)
+
+    #############
+    ### MATHS ###
+    #############

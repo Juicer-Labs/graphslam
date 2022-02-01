@@ -16,7 +16,7 @@ def load_graph_file(file):
             items = line.split()
             if items[0] == "VERTEX2" or items[0] == "VERTEX_SE2":
                 _, ID, x, y, theta = items
-                vertex = Vertex(ID, (x, y, theta))
+                vertex = Vertex(int(ID), (float(x), float(y), float(theta)))
                 vertices.append(vertex)
                 continue
 
@@ -24,7 +24,6 @@ def load_graph_file(file):
                 _, IDout, IDin, dx, dy, dth, I11, I12, I22, I33, I13, I23 = items
                 ids = (int(IDout), int(IDin))
                 estimate = (float(dx), float(dy), float(dth))
-                # covar = [[I11, I12, I13], [I12, I22, I23], [I13, I23, I33]]
                 covar = np.array([[I11, I12, I13], [I12, I22, I23], [I13, I23, I33]], dtype=np.float32)
                 edge = Edge(ids, estimate, covar)
                 edges.append(edge)
