@@ -16,8 +16,13 @@ def load_graph_file(file):
             items = line.split()
             if items[0] == "VERTEX2" or items[0] == "VERTEX_SE2":
                 _, ID, x, y, theta = items
-                vertex = Vertex(int(ID), (float(x), float(y), float(theta)))
-                vertices.append(vertex)
+                # vertex = Vertex(int(ID), (float(x), float(y), float(theta)))
+                # vertices.append(vertex)
+
+                # NOTE(gonk): we dont need a Vertex object as it's just a tuple of 3 floats
+                # and the id is just its index in the array - which we might wanna store but
+                # for now it's fine
+                vertices.append([float(x), float(y), float(theta)])
                 continue
 
             if items[0] == "EDGE2" or items[0] == "EDGE_SE2":
@@ -29,4 +34,4 @@ def load_graph_file(file):
                 edges.append(edge)
                 continue
 
-    return Graph(vertices, edges)
+    return Graph(np.array(vertices, dtype=np.float32), edges)
