@@ -34,10 +34,8 @@ def draw_data_graph(vertices, edges):
 
 
 def main():
-    # e = Edge(None, None, None, False)
-    # e.plot()
     graph = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
-    graph.plot()
+    graph.plot(save=True)
 
 
 if __name__ == "__main__":

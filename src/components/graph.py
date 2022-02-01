@@ -22,9 +22,8 @@ class Graph(object):
     def optimise(self):
         pass
 
-    def plot(self):
+    def plot(self, save=False):
         print("Plotting graph...")
-
         for edge in self.edges:
             edge.plot(self.vertices)
         
@@ -33,4 +32,11 @@ class Graph(object):
         
         plt.title("GraphSLAM")
         plt.axis("off")
-        plt.show()
+        
+        if save:
+            print("Saving graph...")
+            plt.savefig("graph.pdf")
+            print("Graph saved.
+        else:
+            print("Showing graph...")
+            plt.show()

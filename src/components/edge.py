@@ -24,12 +24,12 @@ class Edge(object):
         pass
 
     def plot(self, vertices):
-        x1s = []; y1s = []; x2s = []; y2s = []
+        # x1s = []; y1s = []; x2s = []; y2s = []
 
         id1, id2 = self.ids
         x1, y1, _ = vertices[id1].pose
         x2, y2, _ = vertices[id2].pose
 
-        x1s.append(x1); y1s.append(y1); x2s.append(x2); y2s.append(y2)
+        # x1s.append(x1); y1s.append(y1); x2s.append(x2); y2s.append(y2)
 
-        plt.plot(x1s, y1s, x2s, y2s, marker='', color='green', zorder=0)
+        plt.plot(x1, y1, x2, y2, marker='', color='green', zorder=0)
