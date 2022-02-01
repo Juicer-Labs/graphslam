@@ -31,7 +31,7 @@ conda activate slamenv2
 
 ```python
 def main():
-    graph = load_graph_file(os.path.join(os.path.dirname(__file__), 'data/file.g2o'))
+    graph = load_graph_file('data/file.g2o'))
     
     # Display graph in window.
     graph.plot()
