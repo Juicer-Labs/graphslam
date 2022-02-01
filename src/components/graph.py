@@ -36,15 +36,9 @@ class Graph(object):
     ################
     ### PLOTTING ###
     ################
+    
     def plot(self, save=False):
         print("Plotting graph...")
-
-        # TODO (tom): fix this.
-        # for edge in self.edges:
-        #     edge.plot(self.vertices)
-
-        # for vertex in self.vertices:
-        #     vertex.plot()
 
         xs = []; ys = []
 
