@@ -1,9 +1,14 @@
-class Graph:
-    
-    def __init__(self, edges, vertices):
-        self.edges = edges
-        self.vertices = vertices
+import matplotlib
+matplotlib.use("Qt5Agg")
 
+import matplotlib.pyplot as plt
+
+
+class Graph(object):
+    
+    def __init__(self, vertices, edges):
+        self.vertices = vertices
+        self.edges = edges
         self.chi2 = None
         self.gradient = None
         self.hessian = None
@@ -18,9 +23,8 @@ class Graph:
         pass
 
     def plot(self):
+        print("Plotting graph...")
 
-        print(self.vertices)
-        
         for edge in self.edges:
             edge.plot(self.vertices)
         
@@ -28,6 +32,5 @@ class Graph:
             vertex.plot()
         
         plt.title("GraphSLAM")
-        plt.axis('off')
+        plt.axis("off")
         plt.show()
-

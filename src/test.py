@@ -6,8 +6,9 @@ import pylab as pl
 import matplotlib.pyplot as plt
 
 from matplotlib import collections as mc
-
 from util.load import load_graph_file
+
+from components.edge import Edge
 
 
 def draw_data_graph(vertices, edges):
@@ -33,6 +34,8 @@ def draw_data_graph(vertices, edges):
 
 
 def main():
+    # e = Edge(None, None, None, False)
+    # e.plot()
     graph = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
     graph.plot()
 
