@@ -75,7 +75,7 @@ class Graph(object):
 
             H[0:3, 0:3] += np.identity(3)*1000
             # BIG NOTE(gonk): USE SPARSE SOLVER / FASTER METHOD TO SOLVE LINEAR EQUATIONS
-            dx = -np.dot(np.linalg.inv(H), b) * 0.000001
+            dx = -np.dot(np.linalg.inv(H), b) * 0.00001
             self.vertices += dx
 
     ###############
