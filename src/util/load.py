@@ -27,7 +27,7 @@ def load_graph_file(file):
                 _, IDout, IDin, dx, dy, dth, I11, I12, I22, I33, I13, I23 = items
                 ids = (int(IDout), int(IDin))
                 # estimate = (float(dx), float(dy), float(dth))
-                estimate = np.array([dy,dy,dth], dtype=np.float32)
+                estimate = np.array([dx,dy,dth], dtype=np.float32)
                 covar = np.array([
                     [I11, I12, I13],
                     [I12, I22, I23],

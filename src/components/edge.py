@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 from transformation_funcs import v2t, t2v, inv_trans
 
 
@@ -28,6 +29,7 @@ class Edge(object):
             t2v(Z^-1 * (Xi^-1 * Xj))
             where Z, Xi, Xj are transformation matrices
         """
+
         return t2v(
             np.dot(
                 inv_trans(v2t(self.estimate)),
@@ -40,6 +42,7 @@ class Edge(object):
         Returns 3x3 matrices A,B - jacobian of error function with respect to edges i,j
         Pose to Pose
         """
+
         # NOTE(gonk): there are possible optimisations to be done here
         Xi = v2t(i)
         Xj = v2t(j)
@@ -70,8 +73,8 @@ class Edge(object):
     ###############
 
     def __repr__(self):
-        return "Edge: {}, {}, {}".format(self.ids, self.estimate, self.info_matrix)
+        return ("Edge: {}, {}, {}").format(self.ids, self.estimate, self.info_matrix)
 
     def __str__(self):
-        return "Edge: {}, {}, {}".format(self.ids, self.estimate, self.info_matrix)
+        return ("Edge: {}, {}, {}").format(self.ids, self.estimate, self.info_matrix)
 

@@ -16,7 +16,7 @@ class Vertex(object):
     ##############
 
     def __repr__(self):
-        return "Vertex: {}, {}".format(self.id, self.pose)
+        return ("Vertex: {}, {}").format(self.id, self.pose)
 
     def __str__(self):
-        return "Vertex: {}, {}".format(self.id, self.pose)
+        return ("Vertex: {}, {}").format(self.id, self.pose)

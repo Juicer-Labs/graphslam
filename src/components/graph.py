@@ -1,6 +1,8 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+
 from edge import Edge
+
 
 class Graph(object):
 
@@ -33,13 +35,13 @@ class Graph(object):
         pass
 
     def optimise(self, max_iterations = 50):
-        print "initial error: {}\nStarting Optimisation. . .".format(self.calc_total_error())
+        print("initial error: {}\nStarting Optimisation. . .").format(self.calc_total_error())
 
         # Iterate until convergence or until max_iterations is reached
         for i in range(max_iterations):
-            print "iteration #{}".format(i)
+            print("iteration #{}").format(i)
             total_err = self.calc_total_error()
-            print "current error: {}\n".format(total_err)
+            print("current error: {}\n").format(total_err)
 
             if total_err < self.EPSILON: # Reached convergence
                 return
@@ -80,12 +82,12 @@ class Graph(object):
     ### DUNDERS ###
     ###############
     def __repr__(self):
-        # return "Graph: {}, {}, {}, {}, {}".format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
-        return "Graph: {}, {}".format(self.vertices, self.edges)
+        # return ("Graph: {}, {}, {}, {}, {}").format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
+        return ("Graph: {}, {}").format(self.vertices, self.edges)
 
     def __str__(self):
-        # return "Graph: {}, {}, {}, {}, {}".format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
-        return "Graph: {}, {}".format(self.vertices, self.edges)
+        # return ("Graph: {}, {}, {}, {}, {}").format(self.vertices, self.edges, self.chi2, self.gradient, self.hessian)
+        return ("Graph: {}, {}").format(self.vertices, self.edges)
 
 
     ################

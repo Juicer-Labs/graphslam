@@ -8,7 +8,6 @@ from util.load import load_graph_file
 
 def main():
     graph = load_graph_file(os.path.join(os.path.dirname(__file__), '../data/input_INTEL_g2o.g2o'))
-    # graph.plot(save=True)
     graph.optimise()
     graph.plot(save=True)
 
