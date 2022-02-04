@@ -10,6 +10,7 @@ class Graph(object):
         self.vertices = vertices
         self.edges = edges
         self.EPSILON = 0.0004
+        self.learning_rate = 0.00001
 
     #############
     ### MATHS ###
@@ -75,7 +76,7 @@ class Graph(object):
 
             H[0:3, 0:3] += np.identity(3)*1000
             # BIG NOTE(gonk): USE SPARSE SOLVER / FASTER METHOD TO SOLVE LINEAR EQUATIONS
-            dx = -np.dot(np.linalg.inv(H), b) * 0.00001
+            dx = -np.dot(np.linalg.inv(H), b) * self.learning_rate
             self.vertices += dx
 
     ###############

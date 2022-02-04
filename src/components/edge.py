@@ -6,7 +6,7 @@ from transformation_funcs import v2t, t2v, inv_trans
 
 class Edge(object):
 
-    def __init__(self, ids, estimate, info_matrix, invert_info=True):
+    def __init__(self, ids, estimate, info_matrix, invert_info=False):
         self.ids = ids  # (id1, id2)
         self.estimate = estimate  # (dx, dy, dth)
         self.transformation_estimate = v2t(estimate)
