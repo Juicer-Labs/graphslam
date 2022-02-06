@@ -2,8 +2,6 @@ import numpy as np
 
 from components.edge import Edge
 from components.graph import Graph
-# from components.vertex import Vertex
-
 
 def load_graph_file(file):
     """Loads g2o/toro file"""
@@ -23,10 +21,10 @@ def load_graph_file(file):
                 vertices.append(float(theta))
                 continue
 
-            if items[0] == "EDGE2" or items[0] == "EDGE_SE2":
+            elif items[0] == "EDGE2" or items[0] == "EDGE_SE2":
                 _, IDout, IDin, dx, dy, dth, I11, I12, I13, I22, I23, I33 = items
                 ids = (int(IDout), int(IDin))
-                estimate = np.array([dx,dy,dth], dtype=np.float32)
+                estimate = np.array([dx,dy,dth], dtype=np.float64)
                 covar = np.array([
                     [I11, I12, I13],
                     [I12, I22, I23],
@@ -36,4 +34,4 @@ def load_graph_file(file):
                 edges.append(edge)
                 continue
 
-    return Graph(np.array(vertices, dtype=np.float32).reshape((len(vertices))), edges)
+    return Graph(np.array(vertices, dtype=np.float64), edges)

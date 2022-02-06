@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from transformation_funcs import t2v, v2t, inv_trans
 from edge import Edge
 
 
@@ -35,7 +36,7 @@ class Graph(object):
     def calc_error_gradient_hessian(self):
         pass
 
-    def optimise(self, max_iterations = 50):
+    def optimise(self, max_iterations = 30):
         print("initial error: {}\nStarting Optimisation. . .").format(self.calc_total_error())
 
         # Iterate until convergence or until max_iterations is reached
@@ -50,8 +51,8 @@ class Graph(object):
             # BIG NOTE(gonk): WE ARE NOT USING A SPARSE MATRIX THUS WE'RE WASTING A LOT OF MEMORY
             # A BETTER WAY TO STORE THE H MATRIX SHOULD BE THOUGHT OF
             n = len(self.vertices)
-            H = np.zeros((n,n), dtype=np.float32)
-            b = np.zeros((n,), dtype=np.float32)
+            H = np.zeros((n,n), dtype=np.float64)
+            b = np.zeros((n,), dtype=np.float64)
             for edge in self.edges:
                 i = edge.ids[0]*3
                 j = edge.ids[1]*3
@@ -99,31 +100,26 @@ class Graph(object):
         print("Plotting graph...")
 
         xs = []; ys = []
-
-        # for vertex in self.vertices:
-            # # x, y, _ = vertex.pose
-            # x, y, _ = vertex
-            # xs.append(x); ys.append(y)
-
-        for vertex in self.vertices.reshape((len(self.vertices)/3, 3)):
-            x, y, _ = vertex
+        for v in range(len(self.vertices)/3):
+            x, y, _ = self.vertices[v*3:v*3+3]
             xs.append(x); ys.append(y)
 
         plt.scatter(xs, ys, s=10, marker='o', color='orange', zorder=1)
 
-        x1s = []; y1s = []; x2s = []; y2s = []
-
+        # x1s = []; y1s = []; x2s = []; y2s = []
         for edge in self.edges:
             i = edge.ids[0]*3
-            j = edge.ids[0]*3
-            # x1, y1, _ = self.vertices[id1].pose
-            # x2, y2, _ = self.vertices[id2].pose
-            x1, y1, _ = self.vertices[i:i+3]
-            x2, y2, _ = self.vertices[j:j+3]
+            j = edge.ids[1]*3
+            # x1, y1, _ = self.vertices[i:i+3]
+            # x2, y2, _ = self.vertices[j:j+3]
 
-            x1s.append(x1); y1s.append(y1); x2s.append(x2); y2s.append(y2)
+            # plt.plot(x1, y1, x2, y2, marker='', color='green', zorder=0)
+            # x1s.append(x1); y1s.append(y1); x2s.append(x2); y2s.append(y2)
 
-        plt.plot(x1s, y1s, x2s, y2s, marker='', color='green', zorder=0)
+            xy = np.array([self.vertices[i:i+3], self.vertices[j:j+3]])
+            plt.plot(xy[:, 0], xy[:, 1], color='green', zorder=0)
+
+        # plt.plot(x1s, y1s, x2s, y2s, marker='', color='green', zorder=0)
 
         plt.title("GraphSLAM")
         plt.axis("off")
