@@ -37,16 +37,12 @@ class Graph(object):
         pass
 
     def optimise(self, max_iterations = 30):
-        print("initial error: {}\nStarting Optimisation. . .").format(self.calc_total_error())
+        prev_error = self.calc_total_error()
+        print("initial error: {}\nStarting Optimisation. . .").format(prev_error)
 
         # Iterate until convergence or until max_iterations is reached
         for i in range(max_iterations):
             print("iteration #{}").format(i)
-            total_err = self.calc_total_error()
-            print("current error: {}\n").format(total_err)
-
-            if total_err < self.EPSILON: # Reached convergence
-                return
 
             # BIG NOTE(gonk): WE ARE NOT USING A SPARSE MATRIX THUS WE'RE WASTING A LOT OF MEMORY
             # A BETTER WAY TO STORE THE H MATRIX SHOULD BE THOUGHT OF
@@ -62,8 +58,11 @@ class Graph(object):
                 # could be done within the same functon since they both use similar
                 # intermediate results such as the transformation matrix forms of each pose
                 # Calculate Jacobians A, B
-                A, B = edge.calc_jacobians(x1, x2)
-                err = edge.calc_error(x1, x2)
+                # A, B = edge.calc_jacobians(x1, x2)
+                # err = edge.calc_error(x1, x2)
+
+                # Debug
+                err, A, B = edge.calc_jacobians(x1, x2)
 
                 # Calculation Hessian matrix and Gradient Vector
                 H_ij = np.dot(A.T, np.dot(edge.info_matrix, B))
@@ -75,10 +74,20 @@ class Graph(object):
                 b[i:i+3] += -np.dot(err.T, np.dot(edge.info_matrix, A)).T
                 b[j:j+3] += -np.dot(err.T, np.dot(edge.info_matrix, B)).T
 
-            H[0:3, 0:3] += np.identity(3)*1000
+            H[0:3, 0:3] += np.identity(3)*1
+            b[0:3] -= np.dot(x1.T, np.identity(3)*1).T
             # BIG NOTE(gonk): USE SPARSE SOLVER / FASTER METHOD TO SOLVE LINEAR EQUATIONS
-            dx = -np.dot(np.linalg.inv(H), b) * self.learning_rate
+            # dx = -np.dot(np.linalg.inv(H), b) * self.learning_rate
+            dx = -np.dot(np.linalg.inv(H), b)
             self.vertices += dx
+
+            current_err = self.calc_total_error()
+            print("current error: {}\n").format(current_err)
+
+            if current_err - prev_error < self.EPSILON: # Reached convergence
+                return
+            prev_error = current_err
+
 
     ###############
     ### DUNDERS ###

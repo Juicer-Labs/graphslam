@@ -43,6 +43,7 @@ class Edge(object):
         Pose to Pose
         """
 
+        """
         # NOTE(gonk): there are possible optimisations to be done here
         Xi = v2t(i)
         Xj = v2t(j)
@@ -54,7 +55,7 @@ class Edge(object):
         # Compute derivative of rotational element of i with respect to theta 
         st = -np.sin(i[2]) # sin of th
         ct = np.cos(i[2]) # cos of th
-        dRi_dTh_T = np.array([[-st, ct], [-ct, -st]]) # Already transposed
+        dRi_dTh_T = np.array([[st, ct], [-ct, st]]) # Already transposed
 
         A = np.zeros((3,3))
         A[0:2, 0:2] = -np.dot(Zij_R_T, Xi_R_T)
@@ -66,6 +67,30 @@ class Edge(object):
         B[2,2] = 1
 
         return A,B
+        """
+
+        # Debug
+        zt_ij = v2t(self.estimate)
+        vt_i = v2t(i)
+        vt_j = v2t(j)
+
+        R_i = vt_i[0:2, 0:2]
+        R_ij = zt_ij[0:2, 0:2]
+        ct_i = np.cos(i[2])
+        st_i = np.sin(i[2])
+        dRdT_i = np.array([[-st_i, ct_i], [-ct_i, -st_i]])
+
+        e = t2v(np.dot(inv_trans(zt_ij), np.dot(inv_trans(vt_i), vt_j)))
+        A = np.zeros((3,3))
+        A[0:2,0:2] = np.dot(-R_ij.T, R_i.T)
+        A[0:2, 2] = np.dot(R_ij.T, np.dot(dRdT_i, j[0:2]-i[0:2]))
+        A[2,2] = -1
+
+        B = np.zeros((3,3))
+        B[0:2, 0:2] = np.dot(R_ij.T, R_i.T)
+        B[2,2] = 1
+
+        return e,A,B
 
 
     ###############
