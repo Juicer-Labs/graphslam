@@ -9,7 +9,8 @@ from slam import optimise_graph
 # from transformation_funcs import t2v, inv_t, v2t, inv_v
 
 def main():
-    vertices, edges = load_graph_file('../data/intel.g2o')
+    # vertices, edges = load_graph_file('../data/intel.g2o')
+    vertices, edges = load_graph_file('../data/intel_from_mat.g2o')
     optimise_graph(vertices, edges)
     # plot_graph(vertices, edges)
 
