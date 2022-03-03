@@ -4,6 +4,7 @@ from transformation_funcs import t2v, v2t, inv_t
 
 # OLD
 def calculate_global_error(vertices, edges):
+    print("edges: ", edges)
     total_error = np.float64(0.0)
     for edge in edges:
         x1 = vertices[edge.idFrom*3:edge.idFrom*3+3]
@@ -30,4 +31,7 @@ def calculate_global_error(vertices, edges):
 
 # NEW
 def calc_error_new(vertices, edges):
-    pass
+
+    for edge in edges:
+        x1 = vertices[edge.idFrom*3:edge3] # the first pose
+        x2 = vertices[edge.idFrom*3:3] # the second pose
