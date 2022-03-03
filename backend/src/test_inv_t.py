@@ -1,5 +1,5 @@
-from json.tool import main
-from unicodedata import name
+import sys
+import math
 import numpy as np
 
 from transformation_funcs import inv_t
@@ -32,4 +32,35 @@ def test(amount):
 
 
 if __name__ == '__main__':
-    test(1)
+    print("testing...");
+    # test(1)
+    xin = []
+    output = []
+
+    with open('./inv_t/input_test.txt', 'r') as f:
+        lines = f.readlines()
+        for i in range(1000):
+            x = np.array([a.split() for a in lines[i*4:i*4+3]], dtype=np.float64)
+            xin.append(x)
+
+    with open('./inv_t/result_test.txt', 'r') as f:
+        for line in f.readlines():
+            x = np.array(line.split(), dtype=np.float64)
+            output.append(x)
+
+    # TESTING
+    for i, x in enumerate(xin):
+        if i > 1000:
+            break
+        result = np.around(inv_t(x), decimals=6)
+        a = np.around(output[i], decimals=6)
+        eq = np.allclose(a, result, rtol=1e-04, atol=1e-05)
+        if not eq:
+            print('ERROR: iter#:{}').format(i)
+            print('calculated:')
+            print(result)
+            print('matlab output:')
+            print(a)
+            if input('q to exit: ') == 'q':
+                sys.exit()
+    print('success')
