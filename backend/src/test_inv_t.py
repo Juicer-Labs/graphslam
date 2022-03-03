@@ -44,8 +44,9 @@ if __name__ == '__main__':
             xin.append(x)
 
     with open('./inv_t/result_test.txt', 'r') as f:
-        for line in f.readlines():
-            x = np.array(line.split(), dtype=np.float64)
+        lines = f.readlines()
+        for i in range(1000):
+            x = np.array([a.split() for a in lines[i*3:i*3+3]], dtype=np.float64)
             output.append(x)
 
     # TESTING
@@ -61,6 +62,8 @@ if __name__ == '__main__':
             print(result)
             print('matlab output:')
             print(a)
-            if input('q to exit: ') == 'q':
-                sys.exit()
-    print('success')
+            # if input('q to exit: ') == 'q':
+            #     sys.exit()
+        # else:
+        #     print("TRUE")
+    print('done')
