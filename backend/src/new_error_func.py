@@ -32,6 +32,15 @@ def calculate_global_error(vertices, edges):
 # NEW
 def calc_error_new(vertices, edges):
 
+    total_error = np.float64(0.0)
+
     for edge in edges:
-        x1 = vertices[edge.idFrom*3:edge3] # the first pose
-        x2 = vertices[edge.idFrom*3:3] # the second pose
+        x1 = vertices[edge.idFrom*3:edge.idFrom*3+3] # the first pose
+        x2 = vertices[edge.idTo*3:edge.idTo*3+3]     # the second pose
+        z12 = edge.estimate                          # the measurement
+        info = edge.info                             # the information matrix for the estimate
+
+        print("x1: ", x1)
+        print("x2: ", x2)
+
+    return total_error

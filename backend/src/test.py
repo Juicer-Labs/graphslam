@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import numpy as np
+from new_error_func import calc_error_new
 from load import load_graph_file
 from plot import plot_graph
 from slam import calculate_global_error, optimise_graph
@@ -14,8 +15,10 @@ def main():
     vertices, edges = load_graph_file('../data/test.g2o')
     # optimise_graph(vertices, edges)
     # plot_graph(vertices, edges)
-    print("edges: ", edges)
+    print(edges)
+    print("----------")
     print(calculate_global_error(vertices, edges))
+    print(calc_error_new(vertices, edges))
 
 if __name__ == "__main__":
     main()
