@@ -36,11 +36,10 @@ def calc_error_new(vertices, edges):
 
     for edge in edges:
         x1 = vertices[edge.idFrom*3:edge.idFrom*3+3] # the first pose
-        x2 = vertices[edge.idTo*3:edge.idTo*3+3]     # the second pose
-        z12 = edge.estimate                          # the measurement
-        info = edge.info                             # the information matrix for the estimate
-
-        print("x1: ", x1)
-        print("x2: ", x2)
+        x2 = vertices[edge.idTo*3:edge.idTo*3+3] # the second pose
+        print(x1)
+        print(x2)
+        z12 = edge.estimate # the measurement
+        info = edge.info # the information matrix for the estimate
 
     return total_error

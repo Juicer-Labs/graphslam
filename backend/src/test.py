@@ -18,7 +18,7 @@ def main():
     print(edges)
     print("----------")
     print(calculate_global_error(vertices, edges))
-    print(calc_error_new(vertices, edges))
+    print(calc_error_new(vertices, edges)) # actual=10.2903
 
 if __name__ == "__main__":
     main()
